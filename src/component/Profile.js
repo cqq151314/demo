@@ -6,7 +6,7 @@ const propTypes = {
 	skills: PropTypes.array,
 	child: PropTypes.element
 };
-class Profile extends Component {
+export default class Profile extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -52,5 +52,3 @@ class Profile extends Component {
 		);
 	}
 }
-Profile.propTypes = propTypes;
-export default Profile;

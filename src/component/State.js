@@ -1,16 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-
 const propTypes = {
 	stateText: PropTypes.string
 };
-
-class State extends Component {
+export default class State extends Component {
 	constructor() {
 		super();
 	}
     getDom() {
-        // 调用Profile实例的focus方法
-        console.log(1);
         console.log(this.domElement);
     }
 	render() {
@@ -19,6 +15,3 @@ class State extends Component {
 	}
 }
 
-State.propTypes = propTypes;
-
-export default State;

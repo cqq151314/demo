@@ -1,0 +1,82 @@
+Ref总结
+两种方式添加 ref
+     1：回调函数
+     2：暴露Ref给父组件
+1.回调函数：
+<input name="test" ref={ele => this.inputEle = ele} />    为DOM元素添加Ref
+* export default class Profile extends Component {
+      // 取到真实Dom节点，this.inputEle就是真实的Dom元素
+          focus() {
+      		this.inputEle.focus();
+      	    this.inputEle.style="background:red";
+      	    console.log(this.inputEle)
+          }
+         	render() {
+         		return (
+         			<div className="profile">
+         				<input type="text" value={this.props.value} ref={(ele) => { this.domElement = ele}} onChange={()=>{this.focus}}/>
+         			</div>
+         		);
+         	}
+}
+* <CustomInput ref={ele => this.customInputInstance = ele} />   为组件Component添加Ref
+    //子组件（实例化组件）
+    export default class State extends Component {
+    	constructor() {
+    		super();
+    	}
+        getDom() {
+            console.log(this.domElement);
+        }
+    	render() {
+    		console.log(this.props.stateText);
+    		return <div className="state" ref={(ele) => { this.domElement = ele; }} onClick={()=>this.getDom()}>{this.props.stateText}</div>;
+    	}
+    }
+父组件
+class App extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+        }
+    }
+    render(){
+                return (
+                    <div className="App">
+                        {/* 该ref回调函数会接收到一个挂载的组件实例作为参数*/}
+                        {/*调用State实例的,还可以调用这个实例中的一些方法奥，例如getDom*/}
+                        <State stateText={"我在验证ref"} ref={(ele) => { this.domElement = ele; }}  />
+                        <button onClick={()=>{this.domElement.getDom()}}>点我吧</button>
+                        <button onClick={()=>{console.log(this.domElement.domElement.innerHTML)}}>点我吧</button>
+                    </div>
+                );
+            }
+    }
+export default App;
+2.暴露Ref给父组件
+function CustomTextInput(props) {
+  return (
+    <div>
+      <input ref={props.inputRef} />
+    </div>
+  );
+}
+class Parent extends React.Component {
+  render() {
+    return (
+      <CustomTextInput
+        inputRef={el => this.inputElement = el}
+      />
+    );
+  }
+}
+
+
+注意 谁可以被添加 ref
+
+   * DOM Element
+   * Class Component (不包括 function Component，但是function Component的Dom节点可以添加Ref)
+
+参考资料
+1 http://blog.csdn.net/liangklfang/article/details/72858295
+2 React官网
