@@ -8,22 +8,20 @@ class LifeCycle extends Component {
         bool: PropTypes.bool,
         pro: PropTypes.func
     };
-
     // 默认属性
     static defaultProps = {
         bool: true,
         pro: () => Promise.resolve()
     };
-
     constructor(props) {
         super(props);
-        console.log('getDefaultProps', props);
+        console.log('getDefaultProps', props);   //默认属性
         this.state = {
             willMount: false,
             DidMount: false,
             num: 0
         };
-        console.log('getInitialState', this.state);
+        console.log('getInitialState', this.state);  //this.state
     }
 
     // shouldComponentUpdate() {
@@ -44,7 +42,6 @@ class LifeCycle extends Component {
     componentWillReceiveProps(object, nextProps) {
         console.log('componentWillReceviceProps', object, nextProps);
     }
-
     componentWillUpdate() {
         console.log('componentWillUpdate', this.state);
     }
@@ -59,8 +56,8 @@ class LifeCycle extends Component {
         this.setState({num: ++num});
     }
 
-    render() {
-        console.log('render', this.state);
+    render() {console.log('render', this.state);
+
         // :: 可以 bind this
         return <div onClick={this.clickCallback.bind(this)} >点我!{this.state.num}</div>;
     }
