@@ -57,6 +57,9 @@ export default App;
 function CustomTextInput(props) {
   return (
     <div>
+     //子级组件接收到父级组件传递过来的inputRef函数
+     //当子级组件实例化的时候会将该input传入到该函数中，此时父级组件会
+     //接收到子级组件的DOM结构(input元素)
       <input ref={props.inputRef} />
     </div>
   );
@@ -65,13 +68,12 @@ class Parent extends React.Component {
   render() {
     return (
       <CustomTextInput
+      //为子级组件传入一个inputRef函数
         inputRef={el => this.inputElement = el}
-      />
+      \/>
     );
   }
 }
-
-
 注意 谁可以被添加 ref
 
    * DOM Element
