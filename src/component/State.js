@@ -1,8 +1,10 @@
-import React, { Component, PropTypes } from 'react';
-const propTypes = {
-	stateText: PropTypes.string
-};
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 export default class State extends Component {
+    static propTypes = {
+        stateText: PropTypes.string
+    };
 	constructor() {
 		super();
 	}

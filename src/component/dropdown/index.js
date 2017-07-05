@@ -1,13 +1,12 @@
 import './index.scss';
-import React, { Component, PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-
+import React, { Component } from 'react';
 class Dropdown extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			label: this.props.options[0].label,
-			showMenu: false
+			showMenu: false,
+			Content:this.props.options[0].cont
 		};
 	}
 	//点击子菜单，选中项改变，控制菜单的改变
@@ -15,6 +14,7 @@ class Dropdown extends Component {
 			this.setState({
 				value: option.value,
 				label: option.label,
+				Content:option.cont,
                 showMenu: false
 			});
 	}
@@ -40,11 +40,18 @@ class Dropdown extends Component {
 			</a>
 		);
 	}
+	// 具体内容
+	_renderContent(){
+		return (
+			<div style={{"width":'100%',"height":'400px',"background":"pink"}}>{this.state.Content}</div>
+		)
+	}
 	render() {
 		return (
 			<div className="dropdown dropdown-select">
 				{this._renderSelectBox()}
 				{this._renderMenu()}
+				{this._renderContent()}
 			</div>
 		);
 	}

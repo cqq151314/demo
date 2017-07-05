@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-const propTypes = {
-	name: PropTypes.string.isRequired,
-	age: PropTypes.number.isRequired,
-	skills: PropTypes.array,
-	child: PropTypes.element
-};
 export default class Profile extends Component {
+    static propTypes = {
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number.isRequired,
+        skills: PropTypes.array,
+        child: PropTypes.element
+    };
 	constructor(props) {
 		super(props);
 		this.state = {

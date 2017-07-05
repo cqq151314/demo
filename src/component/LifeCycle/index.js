@@ -1,7 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
 
 class LifeCycle extends Component {
-
     // 代替旧的写法
     static propTypes = {
         test: PropTypes.string.isRequired,
@@ -35,7 +35,7 @@ class LifeCycle extends Component {
     }
 
     componentDidMount() {
-        this.state.DidMount = true;
+        this.setState({DidMount: true});
         console.log('componentDidMount', this.state);
     }
 
@@ -62,6 +62,5 @@ class LifeCycle extends Component {
         return <div onClick={this.clickCallback.bind(this)} >点我!{this.state.num}</div>;
     }
 }
-
 // LifeCycle.propTypes = propTypes;
 export default LifeCycle;
